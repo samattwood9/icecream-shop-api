@@ -69,8 +69,8 @@ namespace api
                 c.SwaggerDoc("v0.1", new OpenApiInfo
                 {
                     Version = "v0.1",
-                    Title = "Prototype API",
-                    Description = "A prototype API.",
+                    Title = "Icecream Shop API",
+                    Description = "An icecream shop's REST API.",
                 });
             });
 
@@ -118,7 +118,7 @@ namespace api
         private void InitializeContainer()
         {
             // Add application services
-            container.Register<ISample, api.Domains.Sample>(Lifestyle.Scoped);
+            container.Register<IFlavour, api.Domains.Flavour>(Lifestyle.Scoped);
             container.Register<ISeed, api.Domains.Seed>(Lifestyle.Scoped);
         }
 

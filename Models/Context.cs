@@ -4,7 +4,7 @@ namespace api.Models
 {
     public class Context : DbContext
     {
-        public DbSet<Sample> Samples { get;set;}
+        public DbSet<Flavour> Flavours { get; set; }
 
         public Context(DbContextOptions options) : base(options)
         {

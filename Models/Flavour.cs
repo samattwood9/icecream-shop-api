@@ -6,20 +6,14 @@ using System.Collections.Generic;
 
 namespace api.Models
 {
-    public class Sample
+    public class Flavour
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
+        public int Id { get; set; } // was previously string
         public string CreatedAt { get; set; }
 
-        //nullable boolean
-        public bool? TestBool {get; set;}
-
-        //non-nullable boolean
-        public bool SecondTestBool {get;set;}
-        public int FavouriteNumber { get; set; }
-
-
+        // Properties
+        public string Name { get; set; }
     }
 }
