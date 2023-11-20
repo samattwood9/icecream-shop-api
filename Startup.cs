@@ -32,7 +32,8 @@ namespace api
             services.AddControllers(config => config.Filters.Add(new CustomExceptionAttribute()));
 
              services.AddDbContext<Context>(options => options
-                .UseInMemoryDatabase(databaseName: "icecream_db")
+                .UseSqlite(Configuration.GetConnectionString("IcecreamDatabase"))
+                //.UseInMemoryDatabase(databaseName: "icecream_db")
                 //.EnableSensitiveDataLogging()
             );
            
@@ -111,6 +112,7 @@ namespace api
         private void InitializeContainer()
         {
             // Add application services
+            container.Register<ICustomer, api.Domains.Customer>(Lifestyle.Scoped);
             container.Register<IFlavour, api.Domains.Flavour>(Lifestyle.Scoped);
             container.Register<ISeed, api.Domains.Seed>(Lifestyle.Scoped);
         }

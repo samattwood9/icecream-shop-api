@@ -2,3 +2,5 @@ bin/
 obj/
 .vs/
 temp.md
+LocalDatabase*
+*.sln

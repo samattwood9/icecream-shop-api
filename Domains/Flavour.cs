@@ -3,10 +3,8 @@ using api.DTOs;
 using api.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-
 
 namespace api.Domains
 {
