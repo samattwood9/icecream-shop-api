@@ -1,8 +1,6 @@
 using api.Domains.Interfaces;
 using api.ErrorHandling;
 using api.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -27,7 +25,6 @@ namespace api
             // Set to false. This will be the default in v5.x (simple injector) and going forward.
             container.Options.ResolveUnregisteredConcreteTypes = false;
   
-
             Configuration = configuration;
         }
 
@@ -39,17 +36,17 @@ namespace api
             services.AddControllers(config => config.Filters.Add(new CustomExceptionAttribute()));
 
              services.AddDbContext<Context>(options => options
-            .UseInMemoryDatabase(databaseName: "sample_db")
-            //.EnableSensitiveDataLogging()
+                .UseInMemoryDatabase(databaseName: "icecream_db")
+                //.EnableSensitiveDataLogging()
             );
            
             // Configure CORS
             services.AddCors(options =>
             {
                 // NOTE: this could be where a whitlist of headers etc is applied.
-                options.AddPolicy("Sample", policy =>
+                options.AddPolicy("icecream", policy =>
                 {
-                    policy.WithOrigins("https://SampleURL.com")
+                    policy.WithOrigins("https://icecream.com")
                         .AllowAnyHeader()
                         .AllowCredentials()
                         .AllowAnyMethod();
@@ -75,14 +72,14 @@ namespace api
             });
 
             // src: https://github.com/dotnet-labs/HerokuContainer/blob/master/Colors.API/Startup.cs
-            services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
+            /* services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedFor |
                                            ForwardedHeaders.XForwardedProto;
                 options.KnownNetworks.Clear();
                 options.KnownProxies.Clear();
-            });
+            }); */
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
@@ -136,16 +133,16 @@ namespace api
 
             // Redirection (needed for Heroku deploy)
             // src: https://github.com/dotnet-labs/HerokuContainer/blob/master/Colors.API/Startup.cs
-            app.UseHsts();
+            /* app.UseHsts();
             app.UseForwardedHeaders();
             if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DYNO")))
             {
                 app.UseHttpsRedirection();
-            }
+            } */
 
             // ASP.NET middleware
             app.UseRouting();
-            app.UseCors("Sample");
+            app.UseCors("icecream");
 
             // Register the Swagger generator and the Swagger UI middlewares
             app.UseSwagger();
