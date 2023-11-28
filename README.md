@@ -1,3 +1,5 @@
+![Icecream Shop API](icecream-shop-api.png)
+
 # Icecream Shop API
 
 Code for an Icecream Shop's REST API, containing some example vulnerabilities.
