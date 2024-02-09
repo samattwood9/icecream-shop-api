@@ -4,3 +4,4 @@ obj/
 temp.md
 LocalDatabase*
 *.sln
+global.json
