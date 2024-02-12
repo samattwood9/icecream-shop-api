@@ -36,6 +36,12 @@ dotnet ef database update
 dotnet run
 ```
 
+#### Step 4
+
+Navigate to http://localhost:5001 to view the Swagger (interactive documentation for the API).
+
+Use the Seed endpoint to seed the database and then experiment with the different endpoints. Try to relate what is returned back to the code.
+
 ## Notes
 
 - This should work with net7.0. If you have multiple versions installed set the version in a global.json file. See: https://learn.microsoft.com/en-us/dotnet/core/versions/selection. You can check your sdk versions with: `dotnet --list-sdks`.
