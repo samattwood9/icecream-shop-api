@@ -19,10 +19,12 @@ dotnet restore
 If you don't have the EF core tools, run:
 
 ```c#
-dotnet tool install -g dotnet-ef
+dotnet tool install -g dotnet-ef --version 7.0.0
 ```
 
 Then (or straightaway if you already have the tools), run:
+
+**Note:** You may need to close and then re-open Visual Studio Code before running the next command.
 
 ```c#
 dotnet ef database update
