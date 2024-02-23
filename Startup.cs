@@ -114,6 +114,7 @@ namespace api
             // Add application services
             container.Register<ICustomer, api.Domains.Customer>(Lifestyle.Scoped);
             container.Register<IFlavour, api.Domains.Flavour>(Lifestyle.Scoped);
+            container.Register<ITopping, api.Domains.Topping>(Lifestyle.Scoped);
             container.Register<ISeed, api.Domains.Seed>(Lifestyle.Scoped);
         }
 
