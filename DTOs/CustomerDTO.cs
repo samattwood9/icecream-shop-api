@@ -7,5 +7,6 @@ namespace api.DTOs
         public string Name { get; set; }
         public string Address { get; set; }
         public string FavouriteFlavour { get; set; }
+        public decimal AmountSpent { get; set; }
     }
 }

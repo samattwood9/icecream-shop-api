@@ -41,7 +41,8 @@ namespace api.Domains
                     Email = customer.Email,
                     Name = customer.Name,
                     Address = customer.Address,
-                    FavouriteFlavour = customer.FavouriteFlavour
+                    FavouriteFlavour = customer.FavouriteFlavour,
+                    AmountSpent = customer.AmountSpent
                 };
 
                 customerDTOs.Add(customerDTO);
