@@ -68,16 +68,6 @@ namespace api
                 });
             });
 
-            // src: https://github.com/dotnet-labs/HerokuContainer/blob/master/Colors.API/Startup.cs
-            /* services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor |
-                                           ForwardedHeaders.XForwardedProto;
-                options.KnownNetworks.Clear();
-                options.KnownProxies.Clear();
-            }); */
-
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             // Configure SimpleInjector (used to inject domains into controllers)
@@ -121,24 +111,6 @@ namespace api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
-            // Security headers
-            // Source for included headers: https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html
-            app.Use(async (context, next) =>
-            {
-                context.Response.Headers.Add("X-Frame-Options", "DENY");
-                context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-                await next();
-            });
-
-            // Redirection (needed for Heroku deploy)
-            // src: https://github.com/dotnet-labs/HerokuContainer/blob/master/Colors.API/Startup.cs
-            /* app.UseHsts();
-            app.UseForwardedHeaders();
-            if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DYNO")))
-            {
-                app.UseHttpsRedirection();
-            } */
-
             // ASP.NET middleware
             app.UseRouting();
             app.UseCors("icecream");
