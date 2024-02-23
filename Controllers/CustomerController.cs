@@ -21,6 +21,14 @@ namespace api.Controllers
             this.domain = domain;
         }
 
+        [HttpPost, ActionName("create-customer")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<CustomerDTO> CreateCustomer([FromBody] CustomerDTO customerDTO)
+        {
+            return domain.CreateCustomer(customerDTO);
+        }
+
         [HttpGet("{email}"), ActionName("read-customer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<List<CustomerDTO>> ReadCustomer(string email)

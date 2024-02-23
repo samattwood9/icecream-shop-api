@@ -27,6 +27,31 @@ namespace api.Domains
 
         public IConfiguration Configuration { get; }
 
+        public CustomerDTO CreateCustomer(CustomerDTO customerDTO)
+        {
+            var customer = new Models.Customer
+            {
+                Email = customerDTO.Email,
+                Name = customerDTO.Name,
+                Address = customerDTO.Address,
+                FavouriteFlavour = customerDTO.FavouriteFlavour,
+                AmountSpent = customerDTO.AmountSpent
+            };
+
+            context.Customers.Add(customer);
+            context.SaveChanges();
+
+            return new CustomerDTO
+            {
+                Id = customer.Id,
+                Email = customer.Email,
+                Name = customer.Name,
+                Address = customer.Address,
+                FavouriteFlavour = customer.FavouriteFlavour,
+                AmountSpent = customerDTO.AmountSpent
+            };
+        }
+
         public List<CustomerDTO> ReadCustomer(string email)
         {
             var query = $"SELECT * FROM Customers WHERE Email='{email}'";
