@@ -52,6 +52,29 @@ namespace api.Domains
             };
         }
 
+        public List<CustomerDTO> ReadCustomers()
+        {
+            var customers = context.Customers;
+
+            List<CustomerDTO> customerDTOs = new List<CustomerDTO>();
+            foreach (var customer in customers)
+            {
+                var customerDTO = new CustomerDTO
+                {
+                    Id = customer.Id,
+                    Email = customer.Email,
+                    Name = customer.Name,
+                    Address = customer.Address,
+                    FavouriteFlavour = customer.FavouriteFlavour,
+                    AmountSpent = customer.AmountSpent
+                };
+
+                customerDTOs.Add(customerDTO);
+            }
+            
+            return customerDTOs;
+        }
+
         public List<CustomerDTO> ReadCustomer(string email)
         {
             var query = $"SELECT * FROM Customers WHERE Email='{email}'";
