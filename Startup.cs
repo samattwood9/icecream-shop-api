@@ -60,9 +60,9 @@ namespace api
             // Register the Swagger services
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v0.1", new OpenApiInfo
+                c.SwaggerDoc("v0.2", new OpenApiInfo
                 {
-                    Version = "v0.1",
+                    Version = "v0.2",
                     Title = "Icecream Shop API",
                     Description = "An icecream shop's REST API.",
                 });
@@ -119,7 +119,7 @@ namespace api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v0.1/swagger.json", "v0.1");
+                c.SwaggerEndpoint("/swagger/v0.2/swagger.json", "v0.2");
                 c.RoutePrefix = string.Empty;
             });
 
