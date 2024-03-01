@@ -60,23 +60,13 @@ namespace api
             // Register the Swagger services
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v0.1", new OpenApiInfo
+                c.SwaggerDoc("v0.2", new OpenApiInfo
                 {
-                    Version = "v0.1",
+                    Version = "v0.2",
                     Title = "Icecream Shop API",
                     Description = "An icecream shop's REST API.",
                 });
             });
-
-            // src: https://github.com/dotnet-labs/HerokuContainer/blob/master/Colors.API/Startup.cs
-            /* services.AddHttpsRedirection(options => { options.HttpsPort = 443; });
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor |
-                                           ForwardedHeaders.XForwardedProto;
-                options.KnownNetworks.Clear();
-                options.KnownProxies.Clear();
-            }); */
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
@@ -114,30 +104,13 @@ namespace api
             // Add application services
             container.Register<ICustomer, api.Domains.Customer>(Lifestyle.Scoped);
             container.Register<IFlavour, api.Domains.Flavour>(Lifestyle.Scoped);
+            container.Register<ITopping, api.Domains.Topping>(Lifestyle.Scoped);
             container.Register<ISeed, api.Domains.Seed>(Lifestyle.Scoped);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
-            // Security headers
-            // Source for included headers: https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html
-            app.Use(async (context, next) =>
-            {
-                context.Response.Headers.Add("X-Frame-Options", "DENY");
-                context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-                await next();
-            });
-
-            // Redirection (needed for Heroku deploy)
-            // src: https://github.com/dotnet-labs/HerokuContainer/blob/master/Colors.API/Startup.cs
-            /* app.UseHsts();
-            app.UseForwardedHeaders();
-            if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DYNO")))
-            {
-                app.UseHttpsRedirection();
-            } */
-
             // ASP.NET middleware
             app.UseRouting();
             app.UseCors("icecream");
@@ -146,7 +119,7 @@ namespace api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v0.1/swagger.json", "v0.1");
+                c.SwaggerEndpoint("/swagger/v0.2/swagger.json", "v0.2");
                 c.RoutePrefix = string.Empty;
             });
 
