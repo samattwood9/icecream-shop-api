@@ -5,6 +5,6 @@ namespace api.Domains.Interfaces
 {
     public interface ICustomer
     {
-        List<CustomerDTO> ReadCustomer(string email);
+        List<CustomerDTO> ReadCustomer(int id);
     }
 }
