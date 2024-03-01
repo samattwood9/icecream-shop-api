@@ -27,6 +27,54 @@ namespace api.Domains
 
         public IConfiguration Configuration { get; }
 
+        public CustomerDTO CreateCustomer(CustomerDTO customerDTO)
+        {
+            var customer = new Models.Customer
+            {
+                Email = customerDTO.Email,
+                Name = customerDTO.Name,
+                Address = customerDTO.Address,
+                FavouriteFlavour = customerDTO.FavouriteFlavour,
+                AmountSpent = customerDTO.AmountSpent
+            };
+
+            context.Customers.Add(customer);
+            context.SaveChanges();
+
+            return new CustomerDTO
+            {
+                Id = customer.Id,
+                Email = customer.Email,
+                Name = customer.Name,
+                Address = customer.Address,
+                FavouriteFlavour = customer.FavouriteFlavour,
+                AmountSpent = customerDTO.AmountSpent
+            };
+        }
+
+        public List<CustomerDTO> ReadCustomers()
+        {
+            var customers = context.Customers;
+
+            List<CustomerDTO> customerDTOs = new List<CustomerDTO>();
+            foreach (var customer in customers)
+            {
+                var customerDTO = new CustomerDTO
+                {
+                    Id = customer.Id,
+                    Email = customer.Email,
+                    Name = customer.Name,
+                    Address = customer.Address,
+                    FavouriteFlavour = customer.FavouriteFlavour,
+                    AmountSpent = customer.AmountSpent
+                };
+
+                customerDTOs.Add(customerDTO);
+            }
+            
+            return customerDTOs;
+        }
+
         public List<CustomerDTO> ReadCustomer(int id)
         {
             var query = $"SELECT * FROM Customers WHERE Id='{id}'";
@@ -41,7 +89,8 @@ namespace api.Domains
                     Email = customer.Email,
                     Name = customer.Name,
                     Address = customer.Address,
-                    FavouriteFlavour = customer.FavouriteFlavour
+                    FavouriteFlavour = customer.FavouriteFlavour,
+                    AmountSpent = customer.AmountSpent
                 };
 
                 customerDTOs.Add(customerDTO);

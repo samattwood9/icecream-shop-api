@@ -21,6 +21,23 @@ namespace api.Controllers
             this.domain = domain;
         }
 
+        [HttpPost, ActionName("create-customer")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<CustomerDTO> CreateCustomer([FromBody] CustomerDTO customerDTO)
+        {
+            return domain.CreateCustomer(customerDTO);
+        }
+
+        // Note: this endpoint is accessible to all users of the platform
+        // This will help to incentivise customers as a part of the rewards programme
+        [HttpGet, ActionName("read-customers")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<List<CustomerDTO>> ReadCustomers()
+        {
+            return domain.ReadCustomers();
+        }
+
         [HttpGet("{id}"), ActionName("read-customer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<List<CustomerDTO>> ReadCustomer(int id)

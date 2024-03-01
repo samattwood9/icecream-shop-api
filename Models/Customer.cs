@@ -17,5 +17,6 @@ namespace api.Models
         public string Name { get; set; }
         public string Address {get; set;}
         public string FavouriteFlavour {get; set;}
+        public decimal AmountSpent {get; set;} // Note: this is private info that should only be accessible to the customer and the store owner
     }
 }
