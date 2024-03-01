@@ -7,6 +7,6 @@ namespace api.Domains.Interfaces
     {
         CustomerDTO CreateCustomer(CustomerDTO customerDTO);
         List<CustomerDTO> ReadCustomers();
-        List<CustomerDTO> ReadCustomer(string email);
+        List<CustomerDTO> ReadCustomer(int id);
     }
 }
