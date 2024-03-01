@@ -75,7 +75,6 @@ namespace api.Domains
             return customerDTOs;
         }
 
-        // temp
         public List<CustomerDTO> ReadCustomer(int id)
         {
             var query = $"SELECT * FROM Customers WHERE Id='{id}'";
