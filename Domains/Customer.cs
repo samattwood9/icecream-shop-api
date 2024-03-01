@@ -75,9 +75,9 @@ namespace api.Domains
             return customerDTOs;
         }
 
-        public List<CustomerDTO> ReadCustomer(int id)
+        public List<CustomerDTO> ReadCustomer(string email)
         {
-            var query = $"SELECT * FROM Customers WHERE Id='{id}'";
+            var query = $"SELECT * FROM Customers WHERE Id='{email}'";
             var customers = context.Customers.FromSqlRaw(query);
 
             List<CustomerDTO> customerDTOs = new List<CustomerDTO>();

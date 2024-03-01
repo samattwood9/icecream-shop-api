@@ -38,11 +38,11 @@ namespace api.Controllers
             return domain.ReadCustomers();
         }
 
-        [HttpGet("{id}"), ActionName("read-customer")]
+        [HttpGet("{email}"), ActionName("read-customer")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<CustomerDTO>> ReadCustomer(int id)
+        public ActionResult<List<CustomerDTO>> ReadCustomer(string email)
         {
-            return domain.ReadCustomer(id);
+            return domain.ReadCustomer(email);
         }
     }
 }
