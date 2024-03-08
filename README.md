@@ -2,7 +2,7 @@
 
 # Icecream Shop API
 
-Code for an Icecream Shop's REST API, containing some example vulnerabilities.
+Code for an Icecream Shop's REST API, containing some example vulnerabilities for educational purposes.
 
 ## Getting started
 
