@@ -6,7 +6,11 @@ Code for an Icecream Shop's REST API, containing some example vulnerabilities fo
 
 ## Getting started
 
-Follow steps 1-3 to get started.
+You don't necessarily need to clone or download the code to get started. **You can simply click through the files and start finding vulnerabilities**.
+
+### Running the Icecream Shop's REST API
+
+If you're working on an activity that requires you to run the code, clone this repository, open it up in Visual Studio Code, and use the built-in terminal to complete the following steps:
 
 #### Step 1
 
@@ -40,7 +44,7 @@ dotnet run
 
 Navigate to http://localhost:5001 to view the Swagger (interactive documentation for the API).
 
-Use the Seed endpoint to seed the database and then experiment with the different endpoints. Try to relate what is returned back to the code.
+Use the Seed endpoint to seed the database and then experiment with the different endpoints.
 
 ## Notes
 
