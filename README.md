@@ -23,6 +23,10 @@ dotnet restore
 If you don't have the EF core tools, run:
 
 ```c#
+dotnet new tool-manifest
+```
+
+```c#
 dotnet tool install dotnet-ef
 ```
 
